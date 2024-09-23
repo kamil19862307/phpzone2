@@ -13,6 +13,7 @@
 
     @vite([
         'resources/css/app.css',
+        'resources/css/font-awesome.css',
         'resources/css/allStyles.min.css',
         'resources/js/app.js',
         'resources/js/js.js',
@@ -106,7 +107,7 @@
 
                     <li class="nav-item">
                         <a class="nav-link text-dark" href="https://php.zone/user/31437"><i id="scoreIcon"
-                                                                                            class="fa fa-star-o font-weight-bold"></i>
+                           class="fa fa-star-o font-weight-bold"></i>
                             <div id="userScore" style="display: inline-block">0</div>
                         </a>
                     </li>
