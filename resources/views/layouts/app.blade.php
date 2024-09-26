@@ -133,6 +133,39 @@
 
 </header>
 
+<!--Main Navigation-->
+<div style="text-align: center;margin-top:65px; width:100%;" class="showOnMobile">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <a onclick="yaCounter34416790.reachGoal('click-telegram-in-header')" class="btn btn-info btn-sm mx-0" style="font-size:large;width:100%" target="_blank" rel="nofollow" href="https://t.me/php_zone"><i class="fa fa-telegram fa-lg"></i> Чат в Telegram</a>
+                <div class="card">
+                    <a onclick="yaCounter34416790.reachGoal('click-telegram-in-header')" class="btn btn-elegant btn-sm mx-0" style="font-size:large;width:100%" target="_blank" rel="nofollow" href="https://t.me/+-ADYOGyUdWwyMTFi"><i class="fa fa-telegram fa-lg"></i> Премиум чат</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div style="width:100%;text-align: center;" class="showOnMobile">
+    <div style="width:92%;margin-left:auto;margin-right:auto;">
+        <div class="card red my-2">
+            <!-- Content -->
+            <div class="card-body text-white text-center">
+
+                Задайте никнейм, чтобы скрыть свою почту! Это делается в
+                <a class="white-text" style="text-decoration: underline" href="https://php.zone/user/31437/edit">профиле</a>.
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Main layout-->
+<main class="mt-5 pt-5">
+    <div class="container">
+        <section>
+
 @include('layouts.incs.left-sidebar')
 
 @yield('content')
@@ -141,6 +174,9 @@
 
 @include('layouts.incs.bottom-adds')
 
+        </section>
+    </div>
+</main>
 
 <!--Footer-->
 <footer id="footer" class="page-footer mdb-color darken-2 mt-4 center-on-small-only">
@@ -320,13 +356,6 @@
 
 <a style="background-color: rgb(0, 176, 249) !important; display: none;" title="Наверх" id="back-to-top" href="#"
    class="btn btn-primary" role="button" data-placement="left"><i class="fa fa-chevron-up"></i></a>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
-
-
-<script>
-</script>
-
 
 </body>
 </html>

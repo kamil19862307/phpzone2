@@ -106,10 +106,10 @@
                         </a>
 
                         <div class="dark-grey-text mx-2">
-                            <p>{{ $post->content }}</p>
+                            <p>{{ Str::limit($post->content, 670, preserveWords: true) }}</p>
                             <p><!--more--></p></div>
 
-                        <a href="https://php.zone/post/rabbitmq-scaling-ordering" class="btn btn-primary btn-md">Читать
+                        <a href="{{ route('posts.show', $post->slug) }}" class="btn btn-primary btn-md">Читать
                             далее
                             <i class="fa fa-book ml-2"></i>
                         </a>
@@ -154,6 +154,10 @@
                     </div>
 
                 @endforeach
+
+                <div class="mt-3">
+                    {{ $posts->links() }}
+                </div>
 
                 <hr class="my-5">
                 <div>
