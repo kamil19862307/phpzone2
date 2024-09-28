@@ -17,7 +17,13 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->word()
+            'title' => fake()->sentence(2),
+            'description' => fake()->realText(1_000),
+            'thumbnail' => fake()->file(
+                base_path('resources/templates/images/category'),
+                storage_path('/app/public/images/category'),
+                false
+            )
         ];
     }
 
