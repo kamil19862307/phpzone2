@@ -20,4 +20,20 @@ class PostController extends Controller
 
         return view('posts.show', compact('post'));
     }
+
+    public function edit(Request $request)
+    {
+        $post = Post::query()->where('slug', '=', $request->slug)->first();
+
+        if (!$post){
+            return abort(404);
+        }
+
+        return view('admin.posts.edit', compact('post'));
+    }
+
+    public function update(Request $request)
+    {
+        dd($request->id);
+    }
 }

@@ -24,6 +24,10 @@ class CategoryController extends Controller
             ->where('slug', '=', $request->slug)
             ->first();
 
+        if (!$category){
+            return abort(404);
+        }
+
         $posts = $category->posts;
 
         return view('categories.show', compact('posts', 'category'));
