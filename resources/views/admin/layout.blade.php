@@ -52,7 +52,7 @@
             <ul class="nav" id="main-menu">
                 <li>
                     <div class="user-img-div">
-                        <img src="assets/img/user.png" class="img-thumbnail"/>
+                        <img src="{{ asset('storage/images/author.png') }}" class="img-thumbnail"/>
 
                         <div class="inner-text">
                             Jhon Deo Alex
@@ -122,7 +122,17 @@
                     </ul>
                 </li>
                 <li>
-                    <a class="active-menu" href="{{ route('admin.index') }}"><i class="fa fa-flash "></i>Все посты</a>
+                    <a class="active-menu" href="#">
+                        <i class="fa fa-flash "></i>Посты<span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="{{ route('admin.index') }}"><i class="fa fa-desktop "></i>Все посты</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('posts.create') }}"><i class="fa fa-desktop "></i>Создать пост </a>
+                        </li>
+                    </ul>
 
                 </li>
                 <li>

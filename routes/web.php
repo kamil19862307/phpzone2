@@ -22,3 +22,6 @@ Route::get('/categories/{slug}', [CategoryController::class, 'show'])->name('cat
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 Route::get('/admin/posts/{slug}/edit', [PostController::class, 'edit'])->name('posts.edit');
 Route::put('/admin/posts/{id}', [PostController::class, 'update'])->name('posts.update');
+Route::delete('/admin/posts/{post}', [PostController::class, 'delete'])->name('posts.delete');
+Route::get('/admin/posts/create', [PostController::class, 'create'])->name('posts.create');
+Route::post('/admin/posts/store', [PostController::class, 'store'])->name('posts.store');

@@ -7,8 +7,8 @@
     <div id="page-inner">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="page-head-line">{{ $post->title }}</h1>
-                <h1 class="page-subhead-line">Просмотр, редактирование постов </h1>
+                <h1 class="page-head-line">Новый пост</h1>
+                <h1 class="page-subhead-line">Создание постов</h1>
             </div>
         </div>
 
@@ -19,37 +19,22 @@
 
             <div class="col-md-12 col-sm-12 col-xs-12">
 
-                @if(session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
-
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         BASIC FORM
                     </div>
                     <div class="panel-body">
-                        <form action="{{ route('posts.update', $post->id) }}" method="post" role="form">
-                            @method('put')
+                        <form action="{{ route('posts.store') }}" method="post" role="form">
+                            @method('post')
                             @csrf
-                            <fieldset disabled>
-                                <div class="form-group">
-                                    <label>ID</label>
-                                    <input name="id"
-                                           class="form-control"
-                                           type="text"
-                                           value="{{ $post->id }}">
-                                    <p class="help-block">Поле ID нельзя менять!</p>
-                                </div>
-                            </fieldset>
+
                             <div class="form-group @error('title') has-error @enderror">
                                 <label for="title" class="form-label">Тайтл</label>
                                 <input type="text"
                                         name="title"
                                         class="form-control"
                                         id="title"
-                                        value="{{ $post->title }}">
+                                        value="{{ old('title') }}">
                                 @if($errors->has('title'))
                                     <p class="help-block">{{ $errors->first('title') }}</p>
                                 @endif
@@ -59,7 +44,7 @@
                                 <input name="slug"
                                        type="text"
                                        class="form-control"
-                                       value="{{ $post->slug }}">
+                                       value="{{ old('slug') }}">
                                 @if($errors->has('slug'))
                                     <p class="help-block">{{ $errors->first('slug') }}</p>
                                 @endif
@@ -68,7 +53,7 @@
                                 <label>Категория</label>
                                 <select name="category_id" class="form-control">
                                     @foreach($categories as $category)
-                                        <option value="{{ $category->id }}" @if($post->category_id == $category->id) selected @endif>
+                                        <option value="{{ $category->id }}">
                                             {{ $category->title }}
                                         </option>
                                     @endforeach
@@ -79,9 +64,8 @@
                                 <textarea name="content"
                                           class="form-control"
                                           rows="20"
-                                >{{ $post->content }}</textarea>
+                                >{!! old('content') !!}</textarea>
                             </div>
-
 
                             <button type="submit" class="btn btn-success">Сохранить</button>
                             <button type="reset" class="btn btn-danger">Сбросить</button>

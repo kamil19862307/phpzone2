@@ -18,6 +18,16 @@
             <div class="col-md-12">
                 <!--   Kitchen Sink -->
                 <div class="panel panel-default">
+                    @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                    @if(session('danger'))
+                        <div class="alert alert-danger">
+                            {{ session('danger') }}
+                        </div>
+                    @endif
                     <div class="panel-heading">
                         Posts
                     </div>
@@ -53,7 +63,13 @@
                                                 Редактировать
                                             </a>
                                         </td>
-                                        <td>Удалить</td>
+                                        <td>
+                                            <form action="{{ route('posts.delete', $post) }}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit">Удалить</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
 
