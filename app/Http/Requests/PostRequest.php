@@ -25,7 +25,8 @@ class PostRequest extends FormRequest
             'title' => ['required', 'max:100'],
             'slug' => ['required'],
             'content' => ['required'],
-            'category_id' => ['required', 'integer']
+            'category_id' => ['required', 'integer'],
+            'user_id' => ['required', 'integer']
         ];
     }
 }

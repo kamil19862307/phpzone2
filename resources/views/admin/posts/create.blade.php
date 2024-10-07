@@ -28,6 +28,10 @@
                             @method('post')
                             @csrf
 
+                            <input type="hidden"
+                                        name="user_id"
+                                        value="1">
+
                             <div class="form-group @error('title') has-error @enderror">
                                 <label for="title" class="form-label">Тайтл</label>
                                 <input type="text"
