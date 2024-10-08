@@ -34,17 +34,24 @@
             <a class="navbar-brand" href="{{ route('admin.index') }}">COMPANY NAME</a>
         </div>
 
+{{--        Через форму можно логаут сделать, но в этой вёрстке это криво выглядит--}}
+{{--        <div class="header-right">--}}
+{{--            <form action="{{ route('admin.logout') }}" method="post">--}}
+{{--                @csrf--}}
+{{--                @method('delete')--}}
+{{--                <button type="submit" class="btn btn-danger" title="Выйти">--}}
+{{--                    выйти--}}
+{{--                </button>--}}
+{{--            </form>--}}
+{{--        </div>--}}
         <div class="header-right">
-
             <a href="message-task.html" class="btn btn-info" title="New Message"><b>30 </b><i
                     class="fa fa-envelope-o fa-2x"></i></a>
             <a href="message-task.html" class="btn btn-primary" title="New Task"><b>40 </b><i
                     class="fa fa-bars fa-2x"></i></a>
-            <a href="login.html" class="btn btn-danger" title="Logout"><i
-                    class="fa fa-exclamation-circle fa-2x"></i></a>
-
-
+            <a href="{{ route('admin.logout') }}" class="btn btn-danger" title="Выйти"><i class="fa fa-exclamation-circle fa-2x"></i></a>
         </div>
+
     </nav>
     <!-- /. NAV TOP  -->
     <nav class="navbar-default navbar-side" role="navigation">

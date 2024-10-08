@@ -9,6 +9,10 @@ class AdminController extends Controller
 {
     public function index()
     {
+        if (auth()->guest()){
+            return redirect()->route('admin.login');
+        }
+
         $posts = Post::query()
             ->select('id', 'title', 'slug', 'created_at', 'updated_at')
             ->orderByDesc('id')
