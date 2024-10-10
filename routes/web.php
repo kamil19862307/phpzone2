@@ -21,6 +21,7 @@ Route::controller(AuthController::class)->group(function (){
     Route::get('/admin/login', 'login')->name('admin.login');
     Route::post('/admin/sign_in', 'signIn')->name('admin.sign_in');
     Route::get('/admin/register', 'register')->name('admin.register');
+    Route::post('/admin/sign_up', 'signUp')->name('admin.sign_up');
     Route::get('/admin/logout', 'logout')->name('admin.logout');
 });
 

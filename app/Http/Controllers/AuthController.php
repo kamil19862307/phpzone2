@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginFormRequest;
+use App\Http\Requests\SignUpFormRequest;
+use App\Models\User;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -11,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function login()
+    public function login(): Application|Factory|View
     {
         return view('admin.auth.login');
     }
@@ -31,9 +36,28 @@ class AuthController extends Controller
         return redirect()->intended(route('admin.index'));
     }
 
-    public function register()
+    public function register(): Application|Factory|View
     {
         return view('admin.auth.register');
+    }
+
+    public function signUp(SignUpFormRequest $request)
+    {
+        if (!$request->validated()){
+            return back()->withErrors(['error' => 'Введены некорректные данные!'])->withInput();
+        }
+
+        $user = User::query()->create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => bcrypt($request['password'])
+            ]);
+
+        event(new Registered($user));
+
+        auth()->login($user);
+
+        return redirect()->intended(route('admin.index'));
     }
 
     public function logout(): RedirectResponse

@@ -34,7 +34,7 @@
             <a class="navbar-brand" href="{{ route('admin.index') }}">COMPANY NAME</a>
         </div>
 
-{{--        Через форму можно логаут сделать, но в этой вёрстке это криво выглядит--}}
+{{--        Через форму можно тоже логаут сделать--}}
 {{--        <div class="header-right">--}}
 {{--            <form action="{{ route('admin.logout') }}" method="post">--}}
 {{--                @csrf--}}
@@ -49,7 +49,7 @@
                     class="fa fa-envelope-o fa-2x"></i></a>
             <a href="message-task.html" class="btn btn-primary" title="New Task"><b>40 </b><i
                     class="fa fa-bars fa-2x"></i></a>
-            <a href="{{ route('admin.logout') }}" class="btn btn-danger" title="Выйти"><i class="fa fa-exclamation-circle fa-2x"></i></a>
+            <a href="{{ route('admin.logout') }}" class="btn btn-danger" title="Выйти"><i class="fa fa-sign-out fa-2x"></i></a>
         </div>
 
     </nav>
@@ -62,7 +62,7 @@
                         <img src="{{ asset('storage/images/author.png') }}" class="img-thumbnail"/>
 
                         <div class="inner-text">
-                            Jhon Deo Alex
+                            {{ auth()->user()->name }}
                             <br/>
                             <small>Last Login : 2 Weeks Ago </small>
                         </div>

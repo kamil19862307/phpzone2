@@ -35,9 +35,9 @@
                                         class="form-control"
                                         id="title"
                                         value="{{ old('title') }}">
-                                @if($errors->has('title'))
-                                    <p class="help-block">{{ $errors->first('title') }}</p>
-                                @endif
+                                @error('title')
+                                    <p class="help-block">{{ $message }}</p>
+                                @enderror
                             </div>
                             <div class="form-group @error('slug') has-error @enderror">
                                 <label>Слаг</label>

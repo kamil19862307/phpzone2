@@ -62,9 +62,9 @@
                         </span>
                     </div>
 
-                    <button type="submit" class="btn btn-sm btn-primary">Войти</button>
+                    <button type="submit" class="btn btn-primary">Войти</button>
                     <hr/>
-                    Нет аккаунта? <a href="index.html">Нажмите сюда </a> либо <a href="index.html">На главную</a>
+                    Нет аккаунта? <a href="{{ route('admin.register') }}">Нажмите сюда </a> либо <a href="{{ route('home') }}">На главную</a>
                 </form>
             </div>
 
