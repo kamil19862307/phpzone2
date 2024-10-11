@@ -55,7 +55,10 @@
                     </div>
                     <div class="form-group">
                         <label class="checkbox-inline">
-                            <input type="checkbox"/> Запомнить меня
+                            <input type="checkbox"
+                                   name="remember"
+                                   value="1"/>
+                            Запомнить меня
                         </label>
                         <span class="pull-right">
                             <a href="index.html">Забыли пароль? </a>

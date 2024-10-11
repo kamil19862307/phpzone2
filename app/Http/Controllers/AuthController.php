@@ -25,10 +25,10 @@ class AuthController extends Controller
     {
         $validated = $request->validated();
 
-        if (!Auth::attempt($request->validated())){
+        if (!Auth::attempt($request->validated(), $request->remember)){
             return back()->withErrors([
                 'email' => 'Пароль или логин неверные.'
-            ])->onlyInput('email', 'password');
+            ])->onlyInput('email');
         }
 
         $request->session()->regenerate();
@@ -41,12 +41,8 @@ class AuthController extends Controller
         return view('admin.auth.register');
     }
 
-    public function signUp(SignUpFormRequest $request)
+    public function signUp(SignUpFormRequest $request): RedirectResponse
     {
-        if (!$request->validated()){
-            return back()->withErrors(['error' => 'Введены некорректные данные!'])->withInput();
-        }
-
         $user = User::query()->create([
             'name' => $request['name'],
             'email' => $request['email'],

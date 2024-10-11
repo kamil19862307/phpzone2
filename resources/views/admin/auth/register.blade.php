@@ -32,9 +32,9 @@
                     <hr/>
                     <h5>Введите данные для регистрации</h5>
                     <br/>
-                    @if ($errors->has('error'))
+                    @if ($errors->any())
                         <div class="error">
-                            {{ $errors->first('error') }}
+                            <p class="text-danger">Введены некоректные данные</p>
                         </div>
                     @endif
 
