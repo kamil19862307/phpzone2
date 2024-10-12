@@ -47,14 +47,14 @@ class AuthController extends Controller
     {
         try {
             $user = User::query()->create([
-                'name' => $request['name'],
-                'email' => $request['email'],
-                'password' => bcrypt($request['password'])
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password)
                 ]);
 
             event(new Registered($user));
 
-            auth()->login($user);
+            auth()->login($user, $request->remember);
 
             return redirect()->intended(route('admin.index'));
 

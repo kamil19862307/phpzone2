@@ -35,7 +35,9 @@
 
                     @if ($errors->any())
                         <div class="error">
-                            <p class="text-danger">{{ $errors->first('error') || 'Введены некоректные данные' }}</p>
+                            <p class="text-danger">
+                                {{ $errors->first('error') ? $errors->first('error') : 'Введены некоректные данные' }}
+                            </p>
                         </div>
                     @endif
 
@@ -85,7 +87,10 @@
                     </div>
                     <div class="form-group">
                         <label class="checkbox-inline">
-                            <input type="checkbox"/> Запомнить меня
+                            <input type="checkbox"
+                                    name="remember"
+                                    value="1"/>
+                             Запомнить меня
                         </label>
                         <span class="pull-right">
                             <a href="{{ route('admin.login') }}">Вспомнили пароль?</a>
