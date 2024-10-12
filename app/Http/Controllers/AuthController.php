@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LoginFormRequest;
 use App\Http\Requests\SignUpFormRequest;
 use App\Models\User;
+use Exception;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -13,6 +14,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
@@ -43,17 +45,24 @@ class AuthController extends Controller
 
     public function signUp(SignUpFormRequest $request): RedirectResponse
     {
-        $user = User::query()->create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => bcrypt($request['password'])
-            ]);
+        try {
+            $user = User::query()->create([
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'password' => bcrypt($request['password'])
+                ]);
 
-        event(new Registered($user));
+            event(new Registered($user));
 
-        auth()->login($user);
+            auth()->login($user);
 
-        return redirect()->intended(route('admin.index'));
+            return redirect()->intended(route('admin.index'));
+
+        } catch (Exception $e){
+            Log::error('Ошибка при попытке создания нового пользователя ' . $e->getMessage());
+
+            return back()->withErrors(['error' => 'Что-то пошло не так! Обратитесь к администратору.']);
+        }
     }
 
     public function logout(): RedirectResponse
