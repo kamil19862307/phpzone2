@@ -25,9 +25,11 @@ Route::controller(AuthController::class)->group(function (){
     Route::get('/admin/logout', 'logout')->name('admin.logout');
 });
 
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
-Route::get('/admin/posts/{slug}/edit', [PostController::class, 'edit'])->name('posts.edit');
-Route::put('/admin/posts/{id}', [PostController::class, 'update'])->name('posts.update');
-Route::delete('/admin/posts/{post}', [PostController::class, 'delete'])->name('posts.delete');
-Route::get('/admin/posts/create', [PostController::class, 'create'])->name('posts.create');
-Route::post('/admin/posts/store', [PostController::class, 'store'])->name('posts.store');
+Route::middleware('auth')->prefix('admin')->group(function (){
+    Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('posts/{slug}/edit', [PostController::class, 'edit'])->name('posts.edit');
+    Route::put('posts/{id}', [PostController::class, 'update'])->name('posts.update');
+    Route::delete('posts/{post}', [PostController::class, 'delete'])->name('posts.delete');
+    Route::get('posts/create', [PostController::class, 'create'])->name('posts.create');
+    Route::post('posts/store', [PostController::class, 'store'])->name('posts.store');
+});
