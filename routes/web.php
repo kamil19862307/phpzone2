@@ -17,12 +17,12 @@ Route::get('/categories/{slug}', [CategoryController::class, 'show'])->name('cat
 
 
 // Admin panel
-Route::controller(AuthController::class)->group(function (){
-    Route::get('/admin/login', 'login')->name('admin.login');
-    Route::post('/admin/sign_in', 'signIn')->name('admin.sign_in');
-    Route::get('/admin/register', 'register')->name('admin.register');
-    Route::post('/admin/sign_up', 'signUp')->name('admin.sign_up');
-    Route::get('/admin/logout', 'logout')->name('admin.logout');
+Route::controller(AuthController::class)->prefix('admin')->group(function (){
+    Route::get('login', 'login')->name('admin.login');
+    Route::post('sign_in', 'signIn')->name('admin.sign_in');
+    Route::get('register', 'register')->name('admin.register');
+    Route::post('sign_up', 'signUp')->name('admin.sign_up');
+    Route::get('logout', 'logout')->name('admin.logout');
 });
 
 Route::middleware('auth')->prefix('admin')->group(function (){

@@ -46,6 +46,12 @@ class PostController extends Controller
 
     public function update(PostRequest $request): Application|Redirector|RedirectResponse
     {
+        // Не админ и не автор поста, то вносить изменения не имеет право
+        if (!auth()->user()->is_admin && auth()->user()->id != $request->user_id) {
+            return redirect(route('posts.edit', $request->slug))
+                ->with('danger', 'Пост № ' . $request->id . ' остался неизменным, недостаточно прав для изменения поста');
+        }
+
         try {
             Post::query()
                 ->findOrFail($request->id)

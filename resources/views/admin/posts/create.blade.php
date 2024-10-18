@@ -11,13 +11,17 @@
                 <h1 class="page-subhead-line">Создание постов</h1>
             </div>
         </div>
-
-
         <!-- /. ROW  -->
 
         <div class="row">
 
             <div class="col-md-12 col-sm-12 col-xs-12">
+
+                @if(session('success') || session('danger'))
+                    <div class="alert alert-{{ session('success') ? 'success' : 'danger' }}">
+                        {{ session('success') ?? session('danger') }}
+                    </div>
+                @endif
 
                 <div class="panel panel-info">
                     <div class="panel-heading">
@@ -27,6 +31,11 @@
                         <form action="{{ route('posts.store') }}" method="post" role="form">
                             @method('post')
                             @csrf
+
+                            <input type="hidden"
+                                   name="user_id"
+                                   value="{{ auth()->user()->id }}"
+                            />
 
                             <div class="form-group @error('title') has-error @enderror">
                                 <label for="title" class="form-label">Тайтл</label>

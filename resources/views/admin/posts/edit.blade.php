@@ -11,19 +11,17 @@
                 <h1 class="page-subhead-line">Просмотр, редактирование постов </h1>
             </div>
         </div>
-
-
         <!-- /. ROW  -->
 
         <div class="row">
 
             <div class="col-md-12 col-sm-12 col-xs-12">
 
-                @if(session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
+                    @if(session('success') || session('danger'))
+                        <div class="alert alert-{{ session('success') ? 'success' : 'danger' }}">
+                            {{ session('success') ?? session('danger') }}
+                        </div>
+                    @endif
 
                 <div class="panel panel-info">
                     <div class="panel-heading">
@@ -33,6 +31,11 @@
                         <form action="{{ route('posts.update', $post->id) }}" method="post" role="form">
                             @method('put')
                             @csrf
+
+                            <input type="hidden"
+                                    name="user_id"
+                                    value="{{ $post->user_id }}"/>
+
                             <fieldset disabled>
                                 <div class="form-group">
                                     <label>ID</label>
@@ -41,6 +44,15 @@
                                            type="text"
                                            value="{{ $post->id }}">
                                     <p class="help-block">Поле ID нельзя менять!</p>
+                                </div>
+                            </fieldset>
+                            <fieldset disabled>
+                                <div class="form-group">
+                                    <label>Автор</label>
+                                    <input class="form-control"
+                                           type="text"
+                                           value="{{ $post->user->name }}">
+                                    <p class="help-block">У автора статьи неизменный автор.</p>
                                 </div>
                             </fieldset>
                             <div class="form-group @error('title') has-error @enderror">
