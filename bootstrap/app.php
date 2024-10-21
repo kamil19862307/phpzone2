@@ -14,6 +14,8 @@ return Application::configure(basePath: dirname(__DIR__))
         // Перенаправлять гостей не по стандартному роуту а по нашему.
         $middleware->redirectGuestsTo(fn(\Illuminate\Http\Request $request) => route('admin.login'));
     })
+//    ->withProviders()
+//    ->withEvents()
     ->withExceptions(function (Exceptions $exceptions) {
         //
     })->create();
