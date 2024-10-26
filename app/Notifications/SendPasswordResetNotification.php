@@ -2,15 +2,12 @@
 
 namespace App\Notifications;
 
-use App\Http\Requests\SignUpFormRequest;
-use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Http\Request;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewUserNotification extends Notification implements ShouldQueue
+class SendPasswordResetNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -20,13 +17,6 @@ class NewUserNotification extends Notification implements ShouldQueue
     public function __construct()
     {
         //
-    }
-
-    public function userName()
-    {
-        $request = new Request();
-
-        return $request->input("name");
     }
 
     /**
@@ -45,9 +35,9 @@ class NewUserNotification extends Notification implements ShouldQueue
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line('Приведствуем вас, ' . $this->userName() . '!')
-                    ->action('Вернуться на сайт', url('/'))
-                    ->line('Спасибо за то что выбрали нас!');
+                    ->line('Пароль успешно изменён!')
+                    ->action('Если это были не вы, то перейдите по ссылкке', url('/'))
+                    ->line('Если это были вы, то ничего делать не нужно.');
     }
 
     /**
