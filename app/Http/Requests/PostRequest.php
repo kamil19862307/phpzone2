@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\ReplaceSpacesWithDashes;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PostRequest extends FormRequest
@@ -24,7 +25,7 @@ class PostRequest extends FormRequest
         return [
             'user_id' => ['required', 'integer'],
             'title' => ['required', 'max:100'],
-            'slug' => ['required'],
+            'slug' => ['required', new ReplaceSpacesWithDashes],
             'content' => ['required'],
             'category_id' => ['required', 'integer']
         ];
