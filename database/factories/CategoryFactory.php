@@ -19,11 +19,7 @@ class CategoryFactory extends Factory
         return [
             'title' => fake()->sentence(2),
             'description' => fake()->realText(1_000),
-            'thumbnail' => fake()->file(
-                base_path('resources/templates/images/category'),
-                storage_path('/app/public/images/category'),
-                false
-            )
+            'thumbnail' => $this->faker->fixturesImage('Categories', 'images/category')
         ];
     }
 
