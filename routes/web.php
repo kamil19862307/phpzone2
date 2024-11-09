@@ -19,9 +19,9 @@ Route::get('/categories/{slug}', [CategoryController::class, 'show'])->name('cat
 // Admin panel
 Route::controller(AuthController::class)->prefix('admin')->group(function (){
     Route::get('login', 'login')->name('admin.login');
-    Route::post('sign_in', 'signIn')->middleware('throttle:auth')->name('admin.sign_in');
+    Route::post('sign_in', 'signIn')->middleware(['throttle:login'])->name('admin.sign_in');
     Route::get('register', 'register')->name('admin.register');
-    Route::post('sign_up', 'signUp')->middleware('throttle:auth')->name('admin.sign_up');
+    Route::post('sign_up', 'signUp')->middleware('throttle:20')->name('admin.sign_up');
     Route::get('logout', 'logout')->name('admin.logout');
 
     // 1 шаг - Форма отрисовки вьюхи
