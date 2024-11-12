@@ -17,12 +17,6 @@
 
             <div class="col-md-12 col-sm-12 col-xs-12">
 
-                @if(session('success') || session('danger'))
-                    <div class="alert alert-{{ session('success') ? 'success' : 'danger' }}">
-                        {{ session('success') ?? session('danger') }}
-                    </div>
-                @endif
-
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         BASIC FORM

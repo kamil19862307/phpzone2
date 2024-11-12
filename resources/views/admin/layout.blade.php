@@ -200,6 +200,8 @@
     <!-- /. NAV SIDE  -->
     <div id="page-wrapper">
 
+        @include('admin.shared.flash')
+
         @yield('content')
 
     </div>

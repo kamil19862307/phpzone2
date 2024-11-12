@@ -48,8 +48,11 @@ class PostController extends Controller
     {
         // Не админ и не автор поста, то вносить изменения не имеет право
         if (!auth()->user()->is_admin && auth()->user()->id != $request->user_id) {
-            return redirect(route('posts.edit', $request->slug))
-                ->with('danger', 'Пост № ' . $request->id . ' остался неизменным, недостаточно прав для изменения поста');
+
+            flash()->alert('Пост № ' . $request->id . ' остался неизменным, недостаточно прав для изменения поста');
+
+            return redirect(route('posts.edit', $request->slug));
+//                ->with('danger', 'Пост № ' . $request->id . ' остался неизменным, недостаточно прав для изменения поста');
         }
 
         try {
@@ -60,12 +63,16 @@ class PostController extends Controller
         } catch (Exception $exception){
             Log::error('Ошибка при изменении поста ' . $exception->getMessage());
 
-            return redirect(route('posts.edit', $request->slug))
-                ->with('danger', 'Пост № ' . $request->id . ' остался неизменным, что-то пошло не так');
+            flash()->alert('Пост № ' . $request->id . ' остался неизменным, что-то пошло не так');
+
+            return redirect(route('posts.edit', $request->slug));
+//                ->with('danger', 'Пост № ' . $request->id . ' остался неизменным, что-то пошло не так');
         }
 
-        return redirect(route('posts.edit', $request->slug))
-            ->with('success', 'Пост № ' . $request->id . ' успешно изменён');
+        flash()->info('Пост № ' . $request->id . ' успешно изменён');
+
+        return redirect(route('posts.edit', $request->slug));
+//            ->with('success', 'Пост № ' . $request->id . ' успешно изменён');
     }
 
     public function delete(Post $post): RedirectResponse
@@ -76,9 +83,13 @@ class PostController extends Controller
         } catch (Exception $exception){
             Log::error('Ошибка при удалении поста ' . $exception->getMessage());
 
-            return redirect(route('admin.index'))
-                ->with('danger', 'Что-то пошло не так, невозможно удалить ' . $post->title . $exception->getMessage());
+            flash()->alert('Что-то пошло не так, невозможно удалить ' . $post->title . $exception->getMessage());
+
+            return redirect(route('admin.index'));
+//                ->with('danger', 'Что-то пошло не так, невозможно удалить ' . $post->title . $exception->getMessage());
         }
+
+        flash()->info($post->title . ' успешно удалён');
 
         return redirect()->back();
     }
@@ -100,11 +111,15 @@ class PostController extends Controller
         } catch (Exception $exception){
             Log::error('Ошибка при добавлении поста ' . $exception->getMessage());
 
-            return redirect(route('admin.index'))
-                ->with('danger', 'Что-то пошло не так, пост не был добавлен');
+            flash()->alert('Что-то пошло не так, пост не был добавлен');
+
+            return redirect(route('admin.index'));
+//                ->with('danger', 'Что-то пошло не так, пост не был добавлен');
         }
 
-        return redirect(route('admin.index'))
-            ->with('success', 'Post ' . $post->title . ' успешно добавлен');
+        flash()->info('Post ' . $post->title . ' успешно добавлен');
+
+        return redirect(route('admin.index'));
+//            ->with('success', 'Post ' . $post->title . ' успешно добавлен');
     }
 }
