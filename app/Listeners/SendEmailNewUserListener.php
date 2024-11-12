@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\SendNewUserEmail;
+use App\Models\User;
 use App\Notifications\NewUserNotification;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -23,6 +24,8 @@ class SendEmailNewUserListener
      */
     public function handle(Registered $event): void
     {
-        $event->user->notify(new NewUserNotification());
+        $user = $event->user;
+
+        $event->user->notify(new NewUserNotification($user));
     }
 }

@@ -17,16 +17,8 @@ class NewUserNotification extends Notification implements ShouldQueue
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct(protected User $user)
     {
-        //
-    }
-
-    public function userName()
-    {
-        $request = new Request();
-
-        return $request->input("name");
     }
 
     /**
@@ -45,7 +37,8 @@ class NewUserNotification extends Notification implements ShouldQueue
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line('Приведствуем вас, ' . $this->userName() . '!')
+                    ->greeting($this->user->name)
+                    ->line("Приведствуем вас!")
                     ->action('Вернуться на сайт', url('/'))
                     ->line('Спасибо за то что выбрали нас!');
     }
