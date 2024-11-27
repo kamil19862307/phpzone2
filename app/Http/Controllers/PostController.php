@@ -9,15 +9,13 @@ use Barryvdh\Debugbar\Facades\Debugbar;
 use Exception;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Log;
 
 class PostController extends Controller
 {
-    public function show(Request $request)
+    public function show(Request $request): View
     {
         $post = Post::query()
             ->where('slug', '=', $request->slug)
@@ -31,7 +29,7 @@ class PostController extends Controller
         return view('posts.show', compact('post'));
     }
 
-    public function edit(Request $request)
+    public function edit(Request $request): View
     {
         $post = Post::query()->where('slug', '=', $request->slug)->first();
 
@@ -44,7 +42,7 @@ class PostController extends Controller
         return view('admin.posts.edit', compact('post', 'categories'));
     }
 
-    public function update(PostRequest $request): Application|Redirector|RedirectResponse
+    public function update(PostRequest $request): RedirectResponse
     {
         // Не админ и не автор поста, то вносить изменения не имеет право
         if (!auth()->user()->is_admin && auth()->user()->id != $request->user_id) {
@@ -94,14 +92,14 @@ class PostController extends Controller
         return redirect()->back();
     }
 
-    public function create(): Application|Factory|View
+    public function create(): View
     {
         $categories = Category::query()->select('id', 'title')->get();
 
         return view('admin.posts.create', compact('categories'));
     }
 
-    public function store(PostRequest $request)
+    public function store(PostRequest $request): RedirectResponse
     {
         $validated = $request->validated();
 
@@ -113,13 +111,13 @@ class PostController extends Controller
 
             flash()->alert('Что-то пошло не так, пост не был добавлен');
 
-            return redirect(route('admin.index'));
+            return to_route('admin.index');
 //                ->with('danger', 'Что-то пошло не так, пост не был добавлен');
         }
 
         flash()->info('Post ' . $post->title . ' успешно добавлен');
 
-        return redirect(route('admin.index'));
+        return to_route('admin.index');
 //            ->with('success', 'Post ' . $post->title . ' успешно добавлен');
     }
 }

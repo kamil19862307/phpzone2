@@ -48,17 +48,17 @@
                                         </td>
                                         <td>{{ $post->slug }}</td>
                                         <td>{{ $post->created_at }}</td>
-                                        <td>{{ $post->created_at }}</td>
+                                        <td>{{ $post->updated_at }}</td>
                                         <td>
                                             <a href="{{ route('posts.edit', $post->slug) }}">
-                                                Редактировать
+                                                <button class="btn btn-info">Редактировать</button>
                                             </a>
                                         </td>
                                         <td>
                                             <form action="{{ route('posts.delete', $post) }}" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <button type="submit">Удалить</button>
+                                                <button type="submit" class="btn btn-danger">Удалить</button>
                                             </form>
                                         </td>
                                     </tr>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PhotoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AdminController;
@@ -41,4 +42,8 @@ Route::middleware('auth')->group(function (){
     Route::delete('posts/{post}', [PostController::class, 'delete'])->name('posts.delete');
     Route::get('posts/create', [PostController::class, 'create'])->name('posts.create');
     Route::post('posts/store', [PostController::class, 'store'])->name('posts.store');
+});
+
+Route::middleware('auth')->group(function (){
+    Route::resource('photos', PhotoController::class);
 });

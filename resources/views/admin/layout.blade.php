@@ -15,6 +15,7 @@
         'resources/admin/assets/js/bootstrap.js',
         'resources/admin/assets/js/jquery.metisMenu.js',
         'resources/admin/assets/js/custom.js',
+        'resources/admin/assets/js/galleryCustom.js',
         ])
 
 
@@ -137,7 +138,7 @@
                             <a href="{{ route('admin.index') }}"><i class="fa fa-desktop "></i>Все посты</a>
                         </li>
                         <li>
-                            <a href="{{ route('posts.create') }}"><i class="fa fa-desktop "></i>Создать пост </a>
+                            <a href="{{ route('posts.create') }}"><i class="glyphicon glyphicon-plus"></i>Создать пост </a>
                         </li>
                     </ul>
 
@@ -157,7 +158,28 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="gallery.html"><i class="fa fa-anchor "></i>Gallery</a>
+                    <a href="#"><i class="fa fa-anchor "></i>Gallery<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="{{ route('photos.index') }}"><i class="fa fa-bicycle "></i>Show all Photos</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-flask "></i>Second Level Link</a>
+                        </li>
+                        <li>
+                            <a href="#">Second Level Link<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="#"><i class="fa fa-plus "></i>Third Level Link</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-comments-o "></i>Third Level Link</a>
+                                </li>
+
+                            </ul>
+
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="error.html"><i class="fa fa-bug "></i>Error Page</a>
