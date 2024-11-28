@@ -1,9 +1,5 @@
-@props(['name'])
+@props(['name', 'type' => 'button', 'class'])
 
-@php
-    $classes = ''
-@endphp
-
-<button {{ $attributes->class([$classes]) }}>
+<button {{ $attributes->merge(['type' => $type, 'class' => 'btn btn-'.$class]) }}>
     {{ $name }}
 </button>

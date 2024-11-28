@@ -88,9 +88,8 @@
                                 >{{ $post->content }}</textarea>
                             </div>
 
-
-                            <button type="submit" class="btn btn-success">Сохранить</button>
-                            <button type="reset" class="btn btn-danger">Сбросить</button>
+                            <x-button type="reset" class="danger" name="Сбросить"/>
+                            <x-button type="submit" class="success" name="Сохранить"/>
 
                         </form>
                     </div>

@@ -89,7 +89,7 @@ class PostController extends Controller
 
         flash()->info($post->title . ' успешно удалён');
 
-        return redirect()->back();
+        return back();
     }
 
     public function create(): View
