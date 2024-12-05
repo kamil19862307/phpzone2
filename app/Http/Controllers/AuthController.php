@@ -39,6 +39,8 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
+        session(['last_login' => time()]);
+
         return redirect()->intended(route('admin.index'));
     }
 

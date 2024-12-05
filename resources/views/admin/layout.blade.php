@@ -7,10 +7,12 @@
 
     <!-- BOOTSTRAP STYLES-->
     @vite([
+//        'resources/admin/assets/css/**/*.css',
         'resources/admin/assets/css/bootstrap.css',
         'resources/admin/assets/css/font-awesome.css',
         'resources/admin/assets/css/basic.css',
         'resources/admin/assets/css/custom.css',
+//        'resources/admin/assets/js/**/*.js',
         'resources/admin/assets/js/jquery-1.10.2.js',
         'resources/admin/assets/js/bootstrap.js',
         'resources/admin/assets/js/jquery.metisMenu.js',
@@ -65,12 +67,10 @@
                         <div class="inner-text">
                             {{ auth()->user()->name }}
                             <br/>
-                            <small>Last Login : 2 Weeks Ago </small>
+                            <small>Last Login : {{ date('d-m-Y H:i:s', session('last_login')) }} </small>
                         </div>
                     </div>
-
                 </li>
-
 
                 <li>
                     <a href="index.html"><i class="fa fa-dashboard "></i>Dashboard</a>
