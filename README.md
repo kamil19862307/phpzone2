@@ -15,5 +15,35 @@ Project will be include all opportunities  like in origin application, I hope.
 
 Everything that is done in this application is for educational purposes only and not for sale.
 
+Порядок установки:
+
+Скачать файлы;
+
+Создать .env файл;
+
+Дать разрешения на запись двум дирректориям, если работаем через докер:
+    docker compose exec -T php chmod -R 777 /var/www/laravel/storage
+    docker compose exec -T php chmod -R 777 /var/www/laravel/bootstrap/cache
+
+Сгенерировать новый ключ:
+    docker compose run --rm artisan key:generate
+
+Пример подключения к БД:
+    DB_CONNECTION=mysql
+    DB_HOST=mysql               - значение из .yml файла 
+    DB_PORT=3306
+    DB_DATABASE=docker_db       - значение из .yml файла
+    DB_USERNAME=laravel         - значение из .yml файла
+    DB_PASSWORD=password        - значение из .yml файла
+
+Миграции:
+    docker compose run --rm artisan migrate:refresh --seed
+
+Vite
+    vite build
+
+
+
+
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
