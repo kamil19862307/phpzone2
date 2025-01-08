@@ -25,6 +25,7 @@ Everything that is done in this application is for educational purposes only and
 
 
     docker compose exec -T php chmod -R 777 /var/www/laravel/storage
+
     docker compose exec -T php chmod -R 777 /var/www/laravel/bootstrap/cache
 
 * _Сгенерировать новый ключ:_
@@ -36,10 +37,15 @@ Everything that is done in this application is for educational purposes only and
 
 
     DB_CONNECTION=mysql
+
     DB_HOST=mysql               - значение из .yml файла 
+
     DB_PORT=3306
+
     DB_DATABASE=docker_db       - значение из .yml файла
+
     DB_USERNAME=laravel         - значение из .yml файла
+
     DB_PASSWORD=password        - значение из .yml файла
 
 * _Миграции и сиды:_
