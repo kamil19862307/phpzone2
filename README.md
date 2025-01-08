@@ -15,20 +15,26 @@ Project will be include all opportunities  like in origin application, I hope.
 
 Everything that is done in this application is for educational purposes only and not for sale.
 
-Порядок установки:
+**Порядок установки:**
 
-Скачать файлы;
+* _Скачать файлы;_
 
-Создать .env файл;
+* _Создать .env файл;_
 
-Дать разрешения на запись двум дирректориям, если работаем через докер:
+* _Дать разрешения на запись двум дирректориям, если ругается "file_put_contents...":_
+
+
     docker compose exec -T php chmod -R 777 /var/www/laravel/storage
     docker compose exec -T php chmod -R 777 /var/www/laravel/bootstrap/cache
 
-Сгенерировать новый ключ:
+* _Сгенерировать новый ключ:_
+
+
     docker compose run --rm artisan key:generate
 
-Пример подключения к БД:
+* _Пример подключения к БД:_
+
+
     DB_CONNECTION=mysql
     DB_HOST=mysql               - значение из .yml файла 
     DB_PORT=3306
@@ -36,10 +42,14 @@ Everything that is done in this application is for educational purposes only and
     DB_USERNAME=laravel         - значение из .yml файла
     DB_PASSWORD=password        - значение из .yml файла
 
-Миграции:
+* _Миграции и сиды:_
+
+
     docker compose run --rm artisan migrate:refresh --seed
 
-Vite
+* _Vite:_
+
+
     vite build
 
 
